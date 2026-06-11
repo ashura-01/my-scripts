@@ -97,7 +97,7 @@ configure_prompt() {
    case "$PROMPT_ALTERNATIVE" in
        twoline)
            # Braces are Cyan (#00FFE1). Inside text uses #FFC8AD for Root, #FFDBDB for Normal User.
-           PROMPT="%B%F{#DBFFF0}[%f%F{%(#.#DBFFF0.#DBFFF0)}%n@%m %1~%f%F{#DBFFF0}]%f%F{#DBFFF0}$ %f%b"
+           PROMPT="%B%F{#00FFDD}[%f%F{%(#.#00FFDD.#00FFDD)}%n@%m %1~%f%F{#00FFDD}]%f%F{#00FFDD}⮞ %f%b"
            ;;
        oneline)
            PROMPT=$'${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.#FFC8AD.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
