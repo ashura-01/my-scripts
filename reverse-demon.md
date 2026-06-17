@@ -1,6 +1,4 @@
-Here's your fully organized reverse shell collection with working table of contents navigation:
 
-```markdown
 # Reverse Shell Collection
 
 ## Table of Contents
@@ -22,14 +20,13 @@ Here's your fully organized reverse shell collection with working table of conte
 - [Ncat Reverse Shells](#ncat-reverse-shells)
 - [Database Reverse Shells](#database-reverse-shells)
 - [Advanced PHP Reverse Shell](#advanced-php-reverse-shell)
-- [Advanced Shells & Persistence](#advanced-shells--persistence)
+- [Advanced Shells and Persistence](#advanced-shells-and-persistence)
 - [Shell Stabilization](#shell-stabilization)
 - [Advanced Stabilization](#advanced-stabilization)
 - [Listener Setup](#listener-setup)
 - [Advanced Listener Setups](#advanced-listener-setups)
-- [Common Issues & Fixes](#common-issues--fixes)
+- [Common Issues and Fixes](#common-issues-and-fixes)
 - [Quick Reference](#quick-reference)
-
 ---
 
 ## Bash Reverse Shells
