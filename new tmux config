@@ -1,0 +1,58 @@
+# =============================================
+# 1. CORE & PERFORMANCE
+# =============================================
+set -g default-terminal "screen-256color"
+set -g history-limit 100000
+set -g mouse on
+set -g base-index 1
+setw -g pane-base-index 1
+set -s escape-time 0
+set-option -g allow-rename off
+# =============================================
+# 2. KEYBINDINGS
+# =============================================
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+# =============================================
+# 3. CLIPBOARD
+# =============================================
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+# =============================================
+# 4. MODERN GREEN/BLUE THEME (VPN Aware)
+# =============================================
+set -g status-justify left
+set -g status-style "bg=default"
+set -g status-interval 5
+# LEFT: Intelligent IP Detection
+# Priority: tun0 (VPN) -> eth0 -> wlan0
+# set -g status-left-length 50
+# set -g status-left "#[fg=#00D9B8] ❐ #S #[fg=#00D9B8]| #[fg=#9FB5AC,bold]IP: #(ip route get 1 | grep -Po 'src \\K[^ ]+' || echo 'Disconnected') "
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+set -g status-left-length 60
+set -g status-left "#[fg=#8FFFE6] 🗲 #S #[fg=#00D9B8]❱❱❱ #[fg=#9FB5AC,bold]IP: #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Disconnected')#{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},, #[fg=#FF4029](VPN)} "
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+# --- Tab Design ---
+setw -g window-status-format "#[fg=#5f87af] #I:#W#{?window_zoomed_flag, #[fg=red]Z,} "
+setw -g window-status-current-format "#[fg=#000000,bg=#FFB8B8,bold] #I:#W#{?window_zoomed_flag, #[fg=#520000]Z,} "
+# RIGHT SIDE: User@Host + Clock
+set -g status-right-length 60
+set -g status-right "#[fg=#5f87af,bold]#(whoami)@#H #[fg=#444444]| #[fg=#FFB8B8]%I:%M %p #[fg=#97FCCF]▒ "
+# Pane Borders & Selection
+set -g pane-border-style "fg=#5c5c5c"
+set -g pane-active-border-style "fg=#FFB8B8"
+set -g mode-style "fg=#000000,bg=#E0E0E0"
+set -g message-style "fg=#000000,bg=#00ffb3"
+# =============================================
+# 5. PLUGINS
+# =============================================
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+run '~/.tmux/plugins/tpm/tpm'
