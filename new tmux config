@@ -36,7 +36,7 @@ set -g status-interval 5
 # set -g status-left "#[fg=#00D9B8] ❐ #S #[fg=#00D9B8]| #[fg=#9FB5AC,bold]IP: #(ip route get 1 | grep -Po 'src \\K[^ ]+' || echo 'Disconnected') "
 #-------------------------------------------------------------------------------------------------------------------------------------------------
 set -g status-left-length 60
-set -g status-left "#[fg=#8FFFE6] 🗲 #S #[fg=#00D9B8]  #[fg=#9FB5AC,bold]IP: #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Disconnected')#{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},,#[fg=#FF4029]ᯤ   } "
+set -g status-left "#[fg=#8FFFE6] 🗲 #S #[fg=#00D9B8]  #[fg=#9FB5AC,bold]IP: #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Disconnected')   #{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},,#[fg=#FF4029]ᯤ   } "
 #-------------------------------------------------------------------------------------------------------------------------------------------------
 # --- Tab Design ---
 setw -g window-status-format "#[fg=#5f87af] #I:#W#{?window_zoomed_flag, #[fg=red]Z,} "
