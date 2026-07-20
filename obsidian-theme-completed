@@ -113,10 +113,12 @@ background-color: #8c96ff !important;
 color: #8c96ff !important;
 }
 
-.nav-file-title,
-.nav-file-title .nav-file-title-content,
-.nav-folder-title,
-.nav-folder-title .nav-folder-title-content {
+/* FIX: excluded .is-active so this base color doesn't override
+   the red active-state text set by --nav-item-color-active */
+.nav-file-title:not(.is-active),
+.nav-file-title:not(.is-active) .nav-file-title-content,
+.nav-folder-title:not(.is-active),
+.nav-folder-title:not(.is-active) .nav-folder-title-content {
 color: #b8bbff8a !important;
 }
 
