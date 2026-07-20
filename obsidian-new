@@ -1,0 +1,121 @@
+.theme-dark {
+  /* Backgrounds */
+  --background-primary: #040407;
+  /* --background-primary: #030008; */
+  --background-secondary: #0000122a;
+  --background-secondary-alt: #0000009b;
+
+  /* === LAYOUT BORDER === */
+  --background-modifier-border: #02000b50 !important;
+  --background-modifier-hover: #292e42;
+  --background-modifier-active-hover: #292e42;
+
+  /* Text */
+  --text-normal: #c0caf5;
+  --text-faint: #565f89;
+  --text-muted: #a9b1d6;
+  --text-accent: #62e0ff !important; /* Updated to match your active red style */
+  --text-accent-hover: #ffa8a8 !important;
+  --text-highlight-bg: #292e42;
+  --text-selection: #364a82;
+
+  /* Links */
+  --text-link: #7aa2f7;
+  --text-link-hover: #7dcfff;
+
+  /* Code */
+  --code-background: #0f0f2dc1;
+  --code-normal: #ff8383;
+  --code-comment: #565f89;
+  --code-keyword: #bb9af7;
+  --code-string: #9ece6a;
+  --code-number: #e0af68;
+  --code-function: #7dcfff;
+  --code-operator: #f7768e;
+
+  /* UI */
+  --interactive-accent: #9a9cff !important; /* Changes core highlights/selections to your active red */
+  --interactive-accent-hover: #a8b4ff !important;
+  --interactive-success: #9ece6a;
+  --interactive-warning: #e0af68;
+  --interactive-danger: #f7768e;
+  --scrollbar-thumb-bg: #292e42;
+}
+
+/* === TABLE STYLING === */
+.markdown-rendered table,
+.markdown-rendered th,
+.markdown-rendered td {
+  border: 1px solid rgba(140, 150, 255, 0.4) !important;
+  background-color: rgba(0, 0, 18, 0.2) !important;
+}
+.markdown-rendered th {
+  background-color: rgba(76, 59, 186, 0.2) !important;
+  color: #a8b0ff !important;
+}
+
+body {
+  --graph-line: rgba(147, 153, 255, 0.35) !important;
+  --graph-line-highlight: #a3acff !important;
+  --graph-node: #707aff !important;
+  --graph-node-resolved: #8c96ff !important;
+  --graph-node-unresolved: #c7adff !important;
+
+  --h1-color: #707aff !important;
+  --h2-color: #8c96ff !important;
+  --h3-color: #a8b0ff !important;
+  --h4-color: #c4cbff !important;
+  --h5-color: #e0e5ff !important;
+  --h6-color: #ffffff !important;
+
+  --icon-color: #8c9fff94 !important;
+  --icon-color-hover: #ffa8a8 !important;
+  --icon-color-active: #ff9a9a !important;
+  --icon-color-focused: #ff9a9ad3 !important;
+  --collapse-icon-color: #8c96ff !important;
+  --collapse-icon-color-hover: #a8b0ff !important;
+
+  /* --- FIX: was --nav-item-color-hover set to a near-transparent value,
+     which made hovered file/folder text invisible. Split into the
+     correct background + text variables. --- */
+  --nav-item-background-hover: rgba(140, 150, 255, 0.1) !important;
+  --nav-item-color-hover: #e0e5ff !important;
+  --nav-item-background-active: rgba(40, 51, 101, 0.367) !important; /* soft red-tinted bg */
+  --nav-item-color-active: #ff9a9a !important; /* Keeps active items red */
+}
+
+.cm-header-1, .markdown-rendered h1 { color: #707aff !important; }
+.cm-header-2, .markdown-rendered h2 { color: #8c96ff !important; }
+.cm-header-3, .markdown-rendered h3 { color: #a8b0ff !important; }
+.cm-header-4, .markdown-rendered h4 { color: #c4cbff !important; }
+.cm-header-5, .markdown-rendered h5 { color: #e0e5ff !important; }
+.cm-header-6, .markdown-rendered h6 { color: #ffffff !important; }
+
+/* === BULLET POINT COLOR === */
+
+/* Reading view (rendered markdown) */
+.markdown-rendered ul > li::marker {
+  color: #8c96ff !important;
+}
+
+/* Nested/ordered list numbers too, if you want them to match */
+.markdown-rendered ol > li::marker {
+  color: #8c96ff !important;
+}
+
+/* Live Preview / editing mode bullets */
+.cm-line .list-bullet::after {
+  background-color: #8c96ff !important;
+}
+
+/* Live Preview numbered list markers */
+.cm-formatting-list-ol {
+  color: #8c96ff !important;
+}
+
+.nav-file-title,
+.nav-file-title .nav-file-title-content,
+.nav-folder-title,
+.nav-folder-title .nav-folder-title-content {
+  color: #b8bbff8a !important;
+}
