@@ -24,7 +24,7 @@
   --text-link-hover: #7dcfff;
 
   /* Code */
-  --code-background: #0f0f2dc1;
+  --code-background: #15153b;
   --code-normal: #ff8383;
   --code-comment: #565f89;
   --code-keyword: #bb9af7;
