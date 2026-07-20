@@ -61,7 +61,7 @@ body {
 --graph-node-resolved: #8c96ff !important;
 --graph-node-unresolved: #c7adff !important;
 
---h1-color: #707aff !important;
+--h1-color: #8088ff !important;
 --h2-color: #8c96ff !important;
 --h3-color: #a8b0ff !important;
 --h4-color: #c4cbff !important;
@@ -84,7 +84,7 @@ body {
 --nav-item-color-active: #ff9a9a !important; /* Keeps active items red */
 }
 
-.cm-header-1, .markdown-rendered h1 { color: #707aff !important; }
+.cm-header-1, .markdown-rendered h1 { color: #8088ff !important; }
 .cm-header-2, .markdown-rendered h2 { color: #8c96ff !important; }
 .cm-header-3, .markdown-rendered h3 { color: #a8b0ff !important; }
 .cm-header-4, .markdown-rendered h4 { color: #c4cbff !important; }
