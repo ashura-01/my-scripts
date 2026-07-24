@@ -2,7 +2,7 @@
   /* Backgrounds */
 --background-primary: #040407;
 /* --background-primary: #030008; */
---background-secondary: #0000122a;
+--background-secondary: #030307;
 --background-secondary-alt: #0000009b;
 
 /* === LAYOUT BORDER === */
