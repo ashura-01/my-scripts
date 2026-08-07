@@ -45,12 +45,12 @@ set -g status-interval 5
 set -g status-left-length 70
 set -g status-left "#[fg=#1e1e2e,bg=#cba6f7,bold] 🗲 #S #[fg=#cba6f7,bg=#313244]#[fg=#89b4fa,bg=#313244,bold]  #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Offline') #{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},,#[fg=#f38ba8]󰦝 }#[fg=#313244,bg=default]           "
 
-# --- Catppuccin Options ---
-set -g @catppuccin_flavor "mocha"
-set -g @catppuccin_window_status_style "rounded"
-set -g @catppuccin_status_fill "icon"
-set -g @catppuccin_status_connect_separator "no"
-set -g @catppuccin_status_background "default"
+# # --- Catppuccin Options ---
+# set -g @catppuccin_flavor "mocha"
+# set -g @catppuccin_window_status_style "rounded"
+# set -g @catppuccin_status_fill "icon"
+# set -g @catppuccin_status_connect_separator "no"
+# set -g @catppuccin_status_background "default"
 
 # RIGHT: user@host + clock
 set -g status-right-length 70
@@ -68,7 +68,7 @@ set -g message-style "fg=#1e1e2e,bg=#a6e3a1"
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'catppuccin/tmux'
+# set -g @plugin 'catppuccin/tmux'
 
 # Load TPM
 run '~/.tmux/plugins/tpm/tpm'
