@@ -1,0 +1,86 @@
+# =============================================
+# 1. CORE & PERFORMANCE
+# =============================================
+set -g default-terminal "screen-256color"
+set -g history-limit 100000
+set -g mouse on
+set -g base-index 1
+setw -g pane-base-index 1
+set -s escape-time 0
+
+# ALLOW programs (vim, htop, zsh) to rename the window automatically
+set-option -g allow-rename on
+set-window-option -g automatic-rename on
+
+# =============================================
+# 2. KEYBINDINGS
+# =============================================
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# =============================================
+# 3. CLIPBOARD
+# =============================================
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+
+# =============================================
+# 4. THEME — Catppuccin Mocha (rounded pills, VPN aware)
+# =============================================
+set -g status-justify left
+set -g status-style "bg=default"
+set -g status-interval 5
+
+# --- Palette ---
+# Base    #1e1e2e    Surface #313244    Text  #cdd6f4
+# Mauve   #cba6f7    Blue    #89b4fa    Teal  #94e2d5
+# Peach   #fab387    Red     #f38ba8    Green #a6e3a1
+
+# LEFT: Session (thunder) + IP (VPN aware)
+set -g status-left-length 70
+set -g status-left "#[fg=#1e1e2e,bg=#cba6f7,bold] 🗲 #S #[fg=#cba6f7,bg=#313244]#[fg=#89b4fa,bg=#313244,bold]  #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Offline') #{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},,#[fg=#f38ba8]󰦝 }#[fg=#313244,bg=default] "
+
+# --- Catppuccin Options ---
+set -g @catppuccin_flavor "mocha"
+set -g @catppuccin_window_status_style "rounded"
+set -g @catppuccin_status_fill "icon"
+set -g @catppuccin_status_connect_separator "no"
+
+# RIGHT: user@host + clock
+set -g status-right-length 70
+set -g status-right "#[fg=#313244,bg=default]#[fg=#b4befe,bg=#313244,bold] #(whoami)@#H #[fg=#313244,bg=default] #[fg=#cba6f7,bg=default]#[fg=#1e1e2e,bg=#cba6f7,bold] %I:%M %p #[fg=#cba6f7,bg=default]"
+
+# Pane Borders & Selection
+set -g pane-border-style "fg=#45475a"
+set -g pane-active-border-style "fg=#cba6f7"
+set -g mode-style "fg=#1e1e2e,bg=#cdd6f4"
+set -g message-style "fg=#1e1e2e,bg=#a6e3a1"
+
+# =============================================
+# 5. PLUGINS
+# =============================================
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'catppuccin/tmux'
+
+# Load TPM
+run '~/.tmux/plugins/tpm/tpm'
+
+# =============================================
+# 6. LOCKED ROUNDED TAB FORMATTING (POST-TPM)
+# =============================================
+# Inactive Tab: Surface/Dark Pill displaying active command + window number
+setw -g window-status-format "#[fg=#313244,bg=default]#[fg=#cdd6f4,bg=#313244] #{pane_current_command} ⎜ #I #[fg=#313244,bg=default]"
+
+# Active Tab: Mauve/Purple Pill displaying active command + zoom icon + window number
+setw -g window-status-current-format "#[fg=#cba6f7,bg=default]#[fg=#1e1e2e,bg=#cba6f7,bold]#{pane_current_command}#{?window_zoomed_flag, 🔍,} ⎜ #I#[fg=#cba6f7,bg=default]"
+
+# Space between tabs
+setw -g window-status-separator " "
