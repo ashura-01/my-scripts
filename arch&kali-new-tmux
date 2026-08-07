@@ -57,8 +57,8 @@ set -g status-right-length 70
 set -g status-right "#[fg=#313244,bg=default]#[fg=#b4befe,bg=#313244,bold] #(whoami)@#H #[fg=#313244,bg=default] #[fg=#cba6f7,bg=default]#[fg=#1e1e2e,bg=#cba6f7,bold] %I:%M %p #[fg=#cba6f7,bg=default]"
 
 # Pane Borders & Selection
-set -g pane-border-style "fg=#45475a"
-set -g pane-active-border-style "fg=#cba6f7"
+set -g pane-border-style "fg=#585B73"
+set -g pane-active-border-style "fg=#ABA6F7"
 set -g mode-style "fg=#1e1e2e,bg=#cdd6f4"
 set -g message-style "fg=#1e1e2e,bg=#a6e3a1"
 
