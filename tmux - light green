@@ -1,0 +1,85 @@
+# =============================================
+# 1. CORE & PERFORMANCE
+# =============================================
+set -g default-terminal "tmux-256color"
+set-option -sa terminal-overrides ",xterm-256color:Tc,xterm*:Tc"
+set -g history-limit 100000
+set -g mouse on
+set -g base-index 1
+setw -g pane-base-index 1
+set -s escape-time 0
+
+# ALLOW programs (vim, htop, zsh) to rename the window automatically
+set-option -g allow-rename on
+set-window-option -g automatic-rename on
+
+# =============================================
+# 2. KEYBINDINGS
+# =============================================
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# =============================================
+# 3. CLIPBOARD
+# =============================================
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard"
+
+# =============================================
+# 4. THEME — Mint/Ice Aqua (#E0FFF9) & Dark Surface
+# =============================================
+set -g status-justify left
+set -g status-interval 5
+
+# --- Palette ---
+# Primary Accent  #E0FFF9 (Mint/Ice Aqua)
+# Base            #181926
+# Surface         #24273A
+# Active Text     #181926
+# Muted Text      #A6DA35 / #8BD5CA (Teal/Aqua tones)
+# VPN Alert       #ED8796
+
+# LEFT: Session (thunder) + IP (VPN aware)
+set -g status-left-length 70
+set -g status-left "#[fg=#181926,bg=#E0FFF9,bold] 🗲 #S #[fg=#E0FFF9,bg=#24273A]#[fg=#8BD5CA,bg=#24273A,bold]  #(ip addr show tun0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show eth0 2>/dev/null | grep -Po 'inet \\K[^/]+' || ip addr show wlan0 2>/dev/null | grep -Po 'inet \\K[^/]+' || echo 'Offline') #{?#{==:#(ip addr show tun0 2>/dev/null | grep -c inet 2>/dev/null),0},,#[fg=#FFE0E0]󰘊 }#[fg=#24273A,bg=default]            "
+
+# RIGHT: user@host + clock
+set -g status-right-length 70
+set -g status-right "#[fg=#24273A,bg=default]#[fg=#B7BDF8,bg=#24273A,bold] #(whoami)@#H #[fg=#24273A,bg=default] #[fg=#E0FFF9,bg=default]#[fg=#181926,bg=#E0FFF9,bold] %I:%M %p #[fg=#E0FFF9,bg=default]"
+
+# Pane Borders & Selection
+set -g pane-border-style "fg=#494D64"
+set -g pane-active-border-style "fg=#E0FFF9"
+set -g mode-style "fg=#181926,bg=#E0FFF9"
+set -g message-style "fg=#181926,bg=#8BD5CA"
+
+# =============================================
+# 5. PLUGINS
+# =============================================
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Load TPM
+run '~/.tmux/plugins/tpm/tpm'
+
+# =============================================
+# 6. LOCKED POST-TPM OVERRIDES (TRANSPARENCY & TABS)
+# =============================================
+# Force status bar background transparent after TPM loads
+set -g status-style "bg=default"
+
+# Inactive Tab: Surface/Dark Pill displaying custom window name or active command + window number
+setw -g window-status-format "#[fg=#24273A,bg=default]#[fg=#CAD3F5,bg=#24273A]#{?window_name,#{window_name},#{pane_current_command}} ⎜ #I#[fg=#24273A,bg=default]"
+
+# Active Tab: #E0FFF9 Pill displaying custom window name or active command + zoom icon + window number
+setw -g window-status-current-format "#[fg=#E0FFF9,bg=default]#[fg=#181926,bg=#E0FFF9,bold]#{?window_name,#{window_name},#{pane_current_command}}#{?window_zoomed_flag, 🔍,} ⎜ #I#[fg=#E0FFF9,bg=default]"
+
+# Space between tabs
+setw -g window-status-separator " "
