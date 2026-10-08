@@ -59,7 +59,7 @@ set -g status-right "#[fg=#313244,bg=default]#[fg=#9DDEE0,bg=#313244,bold] #(
 
 # Pane Borders & Selection
 set -g pane-border-style "fg=#585B73"
-set -g pane-active-border-style "fg=#ABA6F7"
+set -g pane-active-border-style "fg=#DEFFFC"
 set -g mode-style "fg=#1e1e2e,bg=#cdd6f4"
 set -g message-style "fg=#1e1e2e,bg=#a6e3a1"
 
