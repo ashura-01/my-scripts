@@ -86,8 +86,8 @@ KENJI_COLOR="#A387FF"
 configure_prompt() {
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PROMPT="%B%F{#c0faee}╭─[%f%F{#c0faee}%n%f%F{\$KENJI_COLOR}㉿%f%F{#c0faee}%m%f%F{#c0faee}]─[%f%b%F{#B7B0D9}%~%f%B%F{#c0faee}]%f%b
-%B%F{#c0faee}╰─🢖 %f%b"
+            PROMPT="%B%F{#9CFFF6}╭─[%f%F{#9CFFF6}%n%f%F{\$KENJI_COLOR}㉿%f%F{#9CFFF6}%m%f%F{#9CFFF6}]─[%f%b%F{#B7B0D9}%~%f%B%F{#9CFFF6}]%f%b
+%B%F{#9CFFF6}╰─🢖 %f%b"
             ;;
         oneline)
             PROMPT=$'${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.#FFC8AD.blue)}%n%f%F{\$KENJI_COLOR}㉿%f%F{%(#.#FFC8AD.blue)}%m%b%F{reset}:%b%F{%(#.blue.green)}%~%B%F{reset}%(#.#.$) '
