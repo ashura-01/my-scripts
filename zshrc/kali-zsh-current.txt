@@ -94,10 +94,68 @@ fi
 # Default kenji (㉿) color — overridden in precmd() if a venv is active
 KENJI_COLOR="#A387FF"
 
+# ─────────────────────────────────────────────────────────────
+# Path shortening
+# Rule: only the path flexes. When it doesn't fit the terminal
+# width, folders are dropped from the LEFT one at a time and
+# replaced by a dim "…". The last folder is only trimmed when
+# it alone doesn't fit (then its front is cut).
+#
+# Budget = COLUMNS - 10 - len(user) - len(host)
+#   10 = ╭─[ (3) + ㉿ (2) + ]─[ (3) + ] (1) + 1 spare column
+# ─────────────────────────────────────────────────────────────
+prompt_shorten_path() {
+    local p=${(%):-%~}
+    local host=${(%):-%m}
+    local marker="…"
+    local dim="%F{#6E6A86}" norm="%F{#B7B0D9}"
+    local prefix="" body="$p"
+
+    local budget=$(( COLUMNS - 10 - ${#USER} - ${#host} ))
+    (( budget < 8 )) && budget=8
+
+    if (( ${#p} > budget )); then
+        local -a parts=( ${(s:/:)p} )
+        local last=${parts[-1]} candidate
+        local i found=0
+
+        # keep as many trailing folders as fit, dropping from the left
+        for (( i = ${#parts} - 1; i >= 1; i-- )); do
+            candidate="/${(j:/:)parts[-i,-1]}"
+            if (( ${#marker} + ${#candidate} <= budget )); then
+                prefix=$marker
+                body=$candidate
+                found=1
+                break
+            fi
+        done
+
+        # even the last folder alone is too long: cut its front
+        if (( ! found )); then
+            prefix=$marker
+            body=${last[-$(( budget - ${#marker} )),-1]}
+        fi
+    fi
+
+    # escape % so folder names can't break the prompt
+    body=${body//\%/%%}
+    if [[ -n $prefix ]]; then
+        PROMPT_PATH="${dim}${prefix}${norm}${body}"
+    else
+        PROMPT_PATH="${body}"
+    fi
+}
+
+# Re-shorten instantly when the terminal is resized or split
+TRAPWINCH() {
+    prompt_shorten_path
+    zle && zle reset-prompt
+}
+
 configure_prompt() {
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PROMPT="%B%F{#9CFFF6}╭─[%f%F{#9CFFF6}%n%f%F{\$KENJI_COLOR}㉿%f%F{#9CFFF6}%m%f%F{#9CFFF6}]─[%f%b%F{#B7B0D9}%~%f%B%F{#9CFFF6}]%f%b
+            PROMPT="%B%F{#9CFFF6}╭─[%f%F{#9CFFF6}%n%f%F{\$KENJI_COLOR}㉿%f%F{#9CFFF6}%m%f%F{#9CFFF6}]─[%f%b%F{#B7B0D9}\${PROMPT_PATH}%f%B%F{#9CFFF6}]%f%b
 %B%F{#9CFFF6}╰─🢖 %f%b"
             ;;
         oneline)
@@ -198,6 +256,9 @@ xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
 esac
 
 precmd() {
+   # Shorten the path for the current terminal width
+   prompt_shorten_path
+
    # Set kenji (㉿) color based on venv state
    if [[ -n "$VIRTUAL_ENV" ]]; then
        KENJI_COLOR="#D3FF7A"
