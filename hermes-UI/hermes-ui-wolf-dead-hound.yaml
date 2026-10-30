@@ -4,7 +4,7 @@
 # survive copy/paste. Do not convert those strings to single quotes.
 
 name: deathknight
-description: Death Knight - light indigo theme with Nerd Font glyphs
+description: Dead Hound - light indigo theme with Nerd Font glyphs
 
 colors:
   # Banner
@@ -69,10 +69,10 @@ spinner:
     - ["\u27ea\uf0e7", "\uf0e7\u27eb"]
 
 branding:
-  agent_name: "Death Knight"
-  welcome: "\uf0e7 Death Knight online. Type your command."
+  agent_name: "Dead Hound"
+  welcome: "\uf0e7 Dead Hound online. Type your command."
   goodbye: "\uf00c Dismissed."
-  response_label: " \u2694 Death Knight "
+  response_label: " \u2694 Dead Hound "
   prompt_symbol: "\uf054"
   help_header: "\uf05a Available Commands"
 
@@ -106,7 +106,7 @@ tool_emojis:
 
 # Small logo replaces the big default HERMES-AGENT banner
 banner_logo: |
-  [bold #E6E8FF]⚔  D E A T H   K N I G H T  ⚔[/]
+  [bold #E6E8FF]⚔  D E A D   H O U N D  ⚔[/]
   [#7F84C9]the frost never forgets[/]
 
 # Hero art (rebuilt from your screenshot; if your original block renders better, keep yours)
@@ -122,8 +122,8 @@ banner_hero: |
             ⠉ ⠿⠋⠙⠋ ⣤⣾██⣷⣶⣶⣶⣤⣔⡻⠿█⣏
                ⣴██⣷⡾⠿⠟⠛⠿█████████⣤⡄
              ⠠⠤⠶⣾█⡏⢁ ⠁  ⠈⢹█████████⡀
-      ⢲⣶⣤⣤⣶⣶⣾███⣾⣽⣦⠋  [#FF2A2A]⢠⣶⣶⡆[/]⢻█████████⠿⢿⠶⢦⣀
-       ⠉⠛⠟⠛⠛⠛⠉⠉⠹█⡿█⣷⣄ ⠈[#FF2A2A]⠻⠟[/]⣁⣨█████████    ⢹⡄
+      ⢲⣶⣤⣤⣶⣶⣾███⣾⣽⣦⠋  [#FF8282]⢠⣶⣶⡆[/]⢻█████████⠿⢿⠶⢦⣀
+       ⠉⠛⠟⠛⠛⠛⠉⠉⠹█⡿█⣷⣄ ⠈[#FF8282]⠻⠟[/]⣁⣨█████████    ⢹⡄
               ⣀ ⠘█████⣷⣾███⠟⢿███████⣧⡀   ⢳⡀
              ⠈ ⢠⡀⠻█⠿██████⡻⣦⣮██⢟⠿⠏⢻███⣷⣶⣶⣾█⡄
                ⠈⠛⢾⣶█⠆⣭⣮⣭⡍⠛⢛⠿⡛█⡥█⣧⢸⣦⠻███████⣷⡀
@@ -143,5 +143,4 @@ banner_hero: |
               ⢿⡟█████⡿⠋⠔⠉
               ⠘⡇⢹██⡿⠋
                 ⠻⡟⠁
-
-  death knight             .$"[/]
+  D E A D   H O U N D[/]
