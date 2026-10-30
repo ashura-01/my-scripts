@@ -10,7 +10,7 @@ colors:
   # Banner
   banner_border: "#C7CAFF"
   banner_title: "#E6E8FF"
-  banner_accent: "#AEB4FF"
+  banner_accent: "#C2C7FF"
   banner_dim: "#7F84C9"
   banner_text: "#F2F3FF"
 
@@ -23,7 +23,7 @@ colors:
   prompt: "#F2F3FF"
 
   # Structure: faint indigo lines instead of fully hidden
-  input_rule: "#2a2d6b"
+  # input_rule: "#F8F2FF"
   response_border: "#12131a"
   session_label: "#9FA4F0"
   session_border: "#2a2d6b"
@@ -135,12 +135,12 @@ banner_hero: |
                        ⠰⡀⣼⡏   ⠠⣶⣶⣶⣤⣍⠉
                         ⠳⢜⠣⠄  ⢤⣈⠻██⡙⠓⠄
                               ⣄⠹⣷⡜⢧⠄
-              ⢠⢂⢄⠂             ⢀⢀⠇
-            ⢠⠟⣱⠃           ⢀⡄⢀⣇⠁
-            ⠈⢰⠃          ⣠⣴█⠁⡼
-              █⢠⡆     ⣠⣶⣴⣾█⡿⠃
-              █⣾⣷ ⣠⡎⣤⣾█⡿⢛⡵⠟
-              ⢿⡟█████⡿⠋⠔⠉
-              ⠘⡇⢹██⡿⠋
-                ⠻⡟⠁
+    ⢠⢂⢄⠂             ⢀⢀⠇   ⠄  ⣼⣧██⡌
+   ⢠⠟⣱⠃           ⢀⡄⢀⣇⡞⣀⣾⢲⢀⠘⡄⡀█⢿█⠇⠁
+   ⠈⢰⠃          ⣠⣴█⠁⡼⣫⣾⠟⢋⡾⢸ ⡇⡇⠃⢸⡟
+    █⢠⡆     ⣠⣶⣴⣾█⡿⠃ ⠾⠋⠁⢀⠞⠁⡞ ⡇⠃ ⠌
+    █⣾⣷ ⣠⡎⣤⣾█⡿⢛⡵⠟
+    ⢿⡟█████⡿⠋⠔⠉
+    ⠘⡇⢹██⡿⠋
+       ⠻⡟⠁
   D E A D   H O U N D[/]
