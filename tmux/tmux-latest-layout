@@ -1,0 +1,77 @@
+# =============================================
+# 1. CORE & PERFORMANCE
+# =============================================
+set -g default-terminal "tmux-256color"
+set-option -sa terminal-overrides ",xterm-256color:Tc,xterm*:Tc"
+set -g history-limit 100000
+set -g mouse on
+set -g base-index 1
+setw -g pane-base-index 1
+set -s escape-time 0
+
+# Allow programs (vim, htop, zsh) to rename the window automatically
+set-option -g allow-rename on
+set-window-option -g automatic-rename on
+
+# =============================================
+# 2. KEYBINDINGS
+# =============================================
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# =============================================
+# 3. CLIPBOARD (X11 & Wayland Safe)
+# =============================================
+setw -g mode-keys vi
+bind -T copy-mode-vi v send -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "if command -v xclip >/dev/null; then xclip -selection clipboard; elif command -v wl-copy >/dev/null; then wl-copy; fi"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "if command -v xclip >/dev/null; then xclip -selection clipboard; elif command -v wl-copy >/dev/null; then wl-copy; fi"
+
+# =============================================
+# 4. THEME — Whitish-Purple Mocha
+# =============================================
+set -g status-justify centre
+set -g status-interval 2
+set -g status-style "bg=default,none"
+
+# LEFT: Session Capsule + User @ Host
+set -g status-left-length 100
+set -g status-left "#[fg=#D7B8FF,bg=default]#[fg=#1e1e2e,bg=#D7B8FF,bold]   #S   #[fg=#FFC9C9,bg=default,bold] #(whoami)​㉿#H   #[fg=default]"
+
+# RIGHT: Dynamic IP (Teal/Green when VPN active, Pink when local, Red when offline) + Clock (Bold)
+set -g status-right-length 120
+set -g status-right "#(VPN_IP=\$(ip -4 addr show dev tun0 2>/dev/null | awk '/inet / {print \$2}' | cut -d/ -f1); if [ -z \"\$VPN_IP\" ]; then VPN_IP=\$(ip -4 addr show dev wg0 2>/dev/null | awk '/inet / {print \$2}' | cut -d/ -f1); fi; if [ -n \"\$VPN_IP\" ]; then echo \"#[fg=#A6E3A1,bold] \$VPN_IP\"; else SYS_IP=\$(ip -4 addr show 2>/dev/null | awk '/inet / && !/127.0.0.1/ {print \$2}' | cut -d/ -f1 | head -n 1); if [ -n \"\$SYS_IP\" ]; then echo \"#[fg=#FFC9C9,bold] \$SYS_IP\"; else echo \"#[fg=#F38BA8,bold]❌ Offline\"; fi; fi) #[fg=#D7B8FF,bg=default] #[fg=#1e1e2e,bg=#D7B8FF,bold]  %I:%M %p#[fg=#D7B8FF,bg=default]"
+
+# Thin border lines fix (Removed heavy line drawing, clean thin styling)
+set -g pane-border-style "fg=#534C61"
+set -g pane-active-border-style "fg=#B39DCC"
+set -g mode-style "fg=#1e1e2e,bg=#cdd6f4"
+set -g message-style "fg=#1e1e2e,bg=#D7B8FF"
+
+# =============================================
+# 5. PLUGINS
+# =============================================
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Load TPM
+run '~/.tmux/plugins/tpm/tpm'
+
+# =============================================
+# 6. LOCKED POST-TPM OVERRIDES (TRANSPARENCY & TABS)
+# =============================================
+set -g status-style "bg=default,none"
+
+# Inactive Tab: Dark Purple surface pill with light lavender text
+setw -g window-status-format "#[fg=#313244,bg=default]#[fg=#a6adc8,bg=#313244]#W ⎜ #I#[fg=#313244,bg=default]"
+
+# Active Tab: Bright Mauve pill with dark high-contrast text
+setw -g window-status-current-format "#[fg=#D7B8FF,bg=default]#[fg=#1e1e2e,bg=#D7B8FF,bold]#W#{?window_zoomed_flag, 🔍,} ⎜ #I#[fg=#D7B8FF,bg=default]"
+
+# Space between tabs
+setw -g window-status-separator " "
